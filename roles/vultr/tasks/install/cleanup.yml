@@ -13,7 +13,7 @@
   tags: cleanup
 
 - name: Remove all files
-  include_tasks: remove-file.yml
+  include_tasks: install/remove-file.yml
   loop: '{{ cleanup_files }}'
   loop_control:
     loop_var: cleanup_path

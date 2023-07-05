@@ -1,0 +1,13 @@
+---
+
+- name: Stop the systemd services
+  include_tasks: install/services.yml
+  tags: systemd
+
+- name: Remove the packages
+  include_tasks: install/packages.yml
+  tags: apt
+
+- name: Cleanup extra files
+  include_tasks: install/cleanup.yml
+  tags: cleanup
