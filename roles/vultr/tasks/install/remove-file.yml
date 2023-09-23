@@ -8,15 +8,8 @@
 
 - name: Unlock and remove vultr specific file
   when: cleanup_file.stat.exists
-  block:
-    - name: unlock the file
-      file:
-        path: '{{ cleanup_path }}'
-        attr: -i
-        force: true
-    - name: Remove cloud init log readers
-      notify: Reload systemd
-      file:
-        path: '{{ cleanup_path }}'
-        state: absent
+  notify: Reload systemd
+  file:
+    path: '{{ cleanup_path }}'
+    state: absent
   tags: cleanup

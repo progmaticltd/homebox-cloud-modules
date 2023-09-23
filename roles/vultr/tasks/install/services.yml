@@ -4,6 +4,7 @@
   systemd:
     service: '{{ service }}'
     state: stopped
+    masked: true
   loop:
     - cloud-config
     - cloud-final

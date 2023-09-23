@@ -11,3 +11,7 @@
 - name: Cleanup extra files
   include_tasks: install/cleanup.yml
   tags: cleanup
+
+- name: Reset systemd
+  include_tasks: install/systemd.yml
+  tags: systemd
