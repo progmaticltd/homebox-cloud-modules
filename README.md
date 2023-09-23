@@ -11,7 +11,7 @@ roles_path = .:{{ playbook_dir }}/../../common/roles/:/home/andre/git/homebox-cl
 You can then run the role(s) using the dynamic role selection syntax, for instance:
 
 ```sh
-ROLE=home-dual-storage ansible-playbook -v -l install.yml
+ROLE=vultr ansible-playbook install.yml
 ```
 
 ## Current roles
