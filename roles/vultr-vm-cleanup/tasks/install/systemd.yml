@@ -1,0 +1,6 @@
+---
+
+- name: Reset failed units on systemd
+  shell: systemctl reset-failed
+  changed_when: false
+  tags: systemd
