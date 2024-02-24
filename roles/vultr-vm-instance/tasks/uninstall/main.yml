@@ -1,0 +1,21 @@
+---
+
+- name: Load the facts
+  include_tasks: uninstall/facts.yml
+  tags: facts
+
+- name: Stop and destroy the VM
+  include_tasks: uninstall/instance.yml
+  tags: spawn
+
+- name: Firewall related tasks
+  include_tasks: uninstall/firewall.yml
+  tags: firewall
+
+- name: SSH related tasks
+  include_tasks: uninstall/ssh-keys.yml
+  tags: ssh
+
+- name: VPC related tasks
+  include_tasks: uninstall/vpc.yml
+  tags: vpc

@@ -1,0 +1,13 @@
+---
+
+- name: Remove the default VPC
+  delegate_to: localhost
+  become: false
+  vultr.cloud.vpc:
+    api_key: '{{ vultr_api_key }}'
+    description: '{{ vpc.description }}'
+    v4_subnet: '{{ vpc.subnet.split("/") | first  }}'
+    v4_subnet_mask: '{{ vpc.subnet.split("/") | last }}'
+    region: '{{ vpc.region }}'
+    state: absent
+  tags: vpc

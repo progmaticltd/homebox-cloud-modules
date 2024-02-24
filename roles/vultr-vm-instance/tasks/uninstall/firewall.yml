@@ -1,0 +1,44 @@
+---
+
+- name: Remove all the ingress rules (IPv4)
+  delegate_to: localhost
+  become: false
+  vultr.cloud.firewall_rule:
+    group: '{{ firewall.name }}'
+    port: '{{ rule.port }}'
+    protocol: '{{ rule.protocol }}'
+    ip_type: 'v4'
+    subnet: '{{ rule.subnet | default("0.0.0.0") }}'
+    subnet_size: '{{ rule.subnet_size | default("0") }}'
+    notes: '{{ rule.comment }}'
+    state: absent
+  loop: '{{ firewall.rules.ingress | selectattr("version", "contains", "v4") }}'
+  loop_control:
+    loop_var: rule
+  tags: firewall
+
+- name: Remove all the ingress rules (IPv6)
+  delegate_to: localhost
+  become: false
+  vultr.cloud.firewall_rule:
+    group: '{{ firewall.name }}'
+    port: '{{ rule.port }}'
+    protocol: '{{ rule.protocol }}'
+    ip_type: 'v6'
+    subnet: '{{ rule.subnet | default("0::") }}'
+    subnet_size: '{{ rule.subnet_size | default("0") }}'
+    notes: '{{ rule.comment }}'
+    state: absent
+  loop: '{{ firewall.rules.ingress | selectattr("version", "contains", "v6") }}'
+  loop_control:
+    loop_var: rule
+  tags: firewall
+
+- name: Remove the firewall set for homebox
+  delegate_to: localhost
+  become: false
+  vultr.cloud.firewall_group:
+    description: '{{ firewall.name }}'
+    api_key: '{{ vultr_api_key }}'
+    state: absent
+  tags: firewall

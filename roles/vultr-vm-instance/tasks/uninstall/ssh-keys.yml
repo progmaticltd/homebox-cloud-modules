@@ -1,0 +1,17 @@
+---
+
+- name: Create each SSH key
+  delegate_to: localhost
+  become: false
+  vultr.cloud.ssh_key:
+    api_key: '{{ vultr_api_key }}'
+    name: '{{ key.name }}'
+    ssh_key: >-
+      {{ key.type }}
+      {{ key.data | replace(" ", "") }}
+      {{ key.comment }}
+    state: absent
+  loop: '{{ ssh_keys }}'
+  loop_control:
+    loop_var: key
+  tags: ssh

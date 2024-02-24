@@ -1,0 +1,8 @@
+---
+
+- name: Load the API key
+  delegate_to: localhost
+  become: false
+  ansible.builtin.set_fact:
+    vultr_api_key: '{{ lookup("env", "VULTR_API_KEY") }}'
+  tags: facts

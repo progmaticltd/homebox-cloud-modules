@@ -1,0 +1,22 @@
+---
+
+- name: Create an instance using Debian bookworm
+  delegate_to: localhost
+  vultr.cloud.instance:
+    label: freedom
+    hostname: freedom
+    user_data: ~
+    firewall_group: Homebox firewall
+    plan: vc2-1c-2gb
+    ddos_protection: true
+    backups: false
+    enable_ipv6: true
+    # ssh_keys:
+    #   - my ssh key
+    # vpcs:
+    #   - my vpc description
+    tags:
+      - homebox
+    region: ams
+    os: Debian 12 x64 (bookworm)
+    state: absent

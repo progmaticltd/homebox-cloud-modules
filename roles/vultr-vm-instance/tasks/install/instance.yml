@@ -1,0 +1,19 @@
+---
+
+- name: Create an instance using Debian bookworm
+  delegate_to: localhost
+  vultr.cloud.instance:
+    label: '{{ network.hostname }}'
+    hostname: '{{ network.hostname }}'
+    user_data: ~
+    firewall_group: '{{ firewall.name }}'
+    plan: '{{ vm.plan }}'
+    ddos_protection: true
+    backups: false
+    enable_ipv6: true
+    ssh_keys: '{{ ssh_keys }}'
+    vpcs:
+      - '{{ vpc.description }}'
+    tags: homebox
+    region: '{{ vm.region }}'
+    os: '{{ vm.os }}'

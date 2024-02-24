@@ -16,4 +16,12 @@ ROLE=vultr ansible-playbook install.yml
 
 ## Current roles
 
-- vultr: Cleanup vultr virtual machines _before_ installing homebox.
+## Vultr specific roles
+
+### Role vultr-vm-cleanup
+
+Clean-up and removes Vultr specific features not needed or that interferes with HomeBox.
+
+### Role vultr-vm-instance
+
+Create the whole collection to run HomeBox in Vultr: VPC, Firewall rules and the virtual machine.

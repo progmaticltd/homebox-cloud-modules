@@ -1,0 +1,21 @@
+---
+
+- name: Load the facts
+  include_tasks: install/facts.yml
+  tags: facts
+
+- name: Create the ssh keys
+  include_tasks: install/ssh-keys.yml
+  tags: ssh
+
+- name: VPC related tasks
+  include_tasks: install/vpc.yml
+  tags: vpc
+
+- name: Firewall related tasks
+  include_tasks: install/firewall.yml
+  tags: firewall
+
+- name: Create and Lunch the VM
+  include_tasks: install/instance.yml
+  tags: spawn
